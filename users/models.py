@@ -20,5 +20,13 @@ class User(AbstractUser):
     role = models.CharField(max_length=10, choices=USERS_ROLES, default='user')
     confirmation_code = models.CharField(max_length=20, null=True, blank=True)
 
+    @property
+    def is_moderator(self):
+        return self.role == 'moderator'
+
+    @property
+    def is_admin(self):
+        return self.role == 'admin' or self.is_superuser
+
     USERNAME_FIELD = 'username'
     REQUIRED_FIELDS = ('email',)
