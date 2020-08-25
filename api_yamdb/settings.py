@@ -163,7 +163,7 @@ AUTHENTICATION_BACKENDS = [
     'django.contrib.auth.backends.ModelBackend',
 ]
 
-LOGGING_DISABLED = {
+LOGGING = {
     'version': 1,
     'disable_existing_loggers': False,
     'filters': {

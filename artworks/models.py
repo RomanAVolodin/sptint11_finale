@@ -2,16 +2,19 @@ import textwrap
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
 from slugify import slugify
+from django.core.validators import MaxValueValidator, MinValueValidator
+import datetime
 
 
 TEXT_SHORTEN_SIMBOLS_AMOUNT = 50
+MIN_YEAR = 1984
 
 
 class Category(models.Model):
     name = models.CharField(
         max_length=500, verbose_name=_('Category title'), unique=True
     )
-    slug = models.CharField(
+    slug = models.SlugField(
         max_length=500, verbose_name=_('Category slug'), unique=True
     )
 
@@ -35,7 +38,7 @@ class Genre(models.Model):
     name = models.CharField(
         max_length=500, verbose_name=_('Genre title'), unique=True
     )
-    slug = models.CharField(
+    slug = models.SlugField(
         max_length=500, verbose_name=_('Genre slug'), unique=True
     )
 
@@ -53,3 +56,42 @@ class Genre(models.Model):
         if self.slug is None:
             self.slug = slugify(self.name)
         super(Genre, self).save(*args, **kwargs)
+
+
+def max_value_current_year(value):
+    return MaxValueValidator(datetime.date.today().year)(value)
+
+
+class Title(models.Model):
+    name = models.CharField(
+        max_length=500, verbose_name=_('Title'), null=False, blank=False
+    )
+    year = models.PositiveIntegerField(
+        verbose_name=_('Year'),
+        validators=[MinValueValidator(MIN_YEAR), max_value_current_year],
+    )
+    rating = models.PositiveIntegerField(
+        verbose_name=_('Artwork rating'),
+        validators=[MaxValueValidator(10), max_value_current_year],
+        blank=True,
+        null=True,
+    )
+    description = models.TextField(verbose_name=_('Description'))
+    genre = models.ManyToManyField(Genre, related_name='titles')
+    category = models.ForeignKey(
+        Category,
+        on_delete=models.SET_NULL,
+        related_name='titles',
+        null=True,
+        blank=True,
+    )
+
+    class Meta:
+        verbose_name = _('Artwork')
+        verbose_name_plural = _('Artworks')
+        ordering = ('-name',)
+
+    def __str__(self):
+        return textwrap.shorten(
+            self.name, width=TEXT_SHORTEN_SIMBOLS_AMOUNT, placeholder='...'
+        )
