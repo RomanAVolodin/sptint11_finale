@@ -17,4 +17,4 @@ class UserFactory(factory.django.DjangoModelFactory):
     last_name = factory.Faker('last_name')
     email = factory.Faker('email')
     bio = factory.Faker('text')
-    role, _ = random.choice(USERS_ROLES)
+    role = factory.Iterator(dict(USERS_ROLES).keys())
