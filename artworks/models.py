@@ -12,7 +12,7 @@ class Category(models.Model):
         max_length=500, verbose_name=_('Category title'), unique=True
     )
     slug = models.CharField(
-        max_length=500, verbose_name=_('Category slug'), null=True, blank=True
+        max_length=500, verbose_name=_('Category slug'), unique=True
     )
 
     class Meta:
@@ -36,7 +36,7 @@ class Genre(models.Model):
         max_length=500, verbose_name=_('Genre title'), unique=True
     )
     slug = models.CharField(
-        max_length=500, verbose_name=_('Genre slug'), null=True, blank=True
+        max_length=500, verbose_name=_('Genre slug'), unique=True
     )
 
     class Meta:

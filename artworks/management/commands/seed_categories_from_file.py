@@ -14,11 +14,7 @@ class Command(BaseCommand):
         filename = os.path.join(
             settings.BASE_DIR, os.path.join('data', 'category.csv')
         )
-        fields = [
-            'id',
-            'name',
-            'slug',
-        ]
+        fields = ['id', 'name', 'slug']
         with open(filename, newline='') as csvfile:
             reader = csv.reader(csvfile, delimiter=',', quotechar='|')
             for row in reader:

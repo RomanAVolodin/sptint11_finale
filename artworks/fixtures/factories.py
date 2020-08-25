@@ -18,5 +18,5 @@ class GenresFactory(factory.django.DjangoModelFactory):
     class Meta:
         model = Genre
 
-    name = factory.Faker('genre')
+    name = factory.Faker('job')
     slug = factory.LazyAttribute(lambda o: slugify(o.name))

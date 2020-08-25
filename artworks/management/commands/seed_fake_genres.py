@@ -10,7 +10,7 @@ class Command(BaseCommand):
     def add_arguments(self, parser):
         parser.add_argument(
             '--amount',
-            default=10,
+            default=5,
             type=int,
             help='The number of fake genres to create.',
         )
