@@ -5,8 +5,6 @@ import csv
 import os
 from django.conf import settings
 
-from users.fixtures.factories import UserFactory
-
 User = get_user_model()
 
 
