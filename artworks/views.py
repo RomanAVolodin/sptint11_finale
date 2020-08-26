@@ -1,7 +1,7 @@
 from rest_framework import viewsets, filters, mixins, status
 from rest_framework.viewsets import GenericViewSet
-from django.shortcuts import get_object_or_404
 from rest_framework.response import Response
+from .filters import TitleFilter
 from django_filters.rest_framework import DjangoFilterBackend
 
 from .models import Category, Genre, Title
@@ -40,12 +40,12 @@ class TitleViewSet(viewsets.ModelViewSet):
         .prefetch_related('genre')
         .all()
     )
-    filter_backends = (filters.SearchFilter, DjangoFilterBackend)
-    search_fields = ('name',)
-    filter_fields = ('year', 'category__slug', 'genre__slug')
+
+    filter_backends = (DjangoFilterBackend,)
+    filterset_class = TitleFilter
 
     def get_serializer_class(self):
-        if self.action in ('create', 'update'):
+        if self.action in ('create', 'update', 'partial_update'):
             return TitleCreateUpdateSerializer
         return TitleSerializer
 
