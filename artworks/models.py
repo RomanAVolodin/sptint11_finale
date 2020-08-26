@@ -72,11 +72,13 @@ class Title(models.Model):
     )
     rating = models.PositiveIntegerField(
         verbose_name=_('Artwork rating'),
-        validators=[MaxValueValidator(10), max_value_current_year],
+        validators=(MaxValueValidator(10), max_value_current_year),
         blank=True,
         null=True,
     )
-    description = models.TextField(verbose_name=_('Description'))
+    description = models.TextField(
+        verbose_name=_('Description'), null=True, blank=True
+    )
     genre = models.ManyToManyField(
         Genre, related_name='titles', verbose_name=_('Genres')
     )
