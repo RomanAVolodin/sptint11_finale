@@ -1,5 +1,5 @@
 from django.core.management import BaseCommand
-from django.utils.translation import ugettext_lazy as _
+from django.utils.translation import gettext_lazy as _
 import csv
 import os
 from django.conf import settings
@@ -16,7 +16,7 @@ class Command(BaseCommand):
         )
         fields = ['id', 'name', 'slug']
         with open(filename, newline='') as csvfile:
-            reader = csv.reader(csvfile, delimiter=',', quotechar='|')
+            reader = csv.reader(csvfile, delimiter=',', quotechar='"')
             for row in reader:
                 dictionary = dict(zip(fields, row))
                 try:

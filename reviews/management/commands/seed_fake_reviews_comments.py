@@ -1,7 +1,7 @@
 from django.core.management import BaseCommand
 from django.utils.translation import gettext_lazy as _
 
-from artworks.fixtures.factories import GenresFactory
+from reviews.fixtures.factories import ReviewFactory
 
 
 class Command(BaseCommand):
@@ -10,11 +10,11 @@ class Command(BaseCommand):
     def add_arguments(self, parser):
         parser.add_argument(
             '--amount',
-            default=5,
+            default=50,
             type=int,
-            help='The number of fake genres to create.',
+            help='The number of fake reviews to create.',
         )
 
     def handle(self, *args, **options):
         for _ in range(options['amount']):
-            GenresFactory.create()
+            ReviewFactory.create()

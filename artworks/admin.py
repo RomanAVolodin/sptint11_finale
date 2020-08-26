@@ -1,5 +1,5 @@
 from django.contrib import admin
-from django.utils.translation import ugettext_lazy as _
+from django.utils.translation import gettext_lazy as _
 
 from .models import Category, Genre, Title
 
@@ -23,7 +23,7 @@ class GenreAdmin(admin.ModelAdmin):
 @admin.register(Title)
 class TitleAdmin(admin.ModelAdmin):
     fieldsets = (
-        (None, {'fields': ('name', 'rating')}),
+        (None, {'fields': ('name',)}),
         (_('Detail info'), {'fields': ('description', 'genre', 'category')}),
         (_('Important dates'), {'fields': ('year',)}),
     )

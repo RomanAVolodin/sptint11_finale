@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-08-26 10:22+0300\n"
+"POT-Creation-Date: 2020-08-26 16:20+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -19,6 +19,7 @@ msgstr ""
 "Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
 "%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || (n"
 "%100>=11 && n%100<=14)? 2 : 3);\n"
+
 #: artworks/admin.py:9 artworks/admin.py:17
 msgid "Main info"
 msgstr "Основная информация"
@@ -31,12 +32,13 @@ msgstr "Подробности"
 msgid "Important dates"
 msgstr "Важные даты"
 
-#: artworks/apps.py:7 artworks/models.py:91
+#: artworks/apps.py:7 artworks/models.py:101
 msgid "Artworks"
 msgstr "Произведения"
 
 #: artworks/management/commands/seed_categories_from_file.py:11
 #: artworks/management/commands/seed_genres_from_file.py:11
+#: artworks/management/commands/seed_titles_from_file.py:11
 msgid "Seeds the database from file."
 msgstr "Заполнить БД из файла"
 
@@ -46,54 +48,53 @@ msgstr "Заполнить БД из файла"
 msgid "Seeds the database."
 msgstr "Заполнить БД"
 
-#: artworks/models.py:15
+#: artworks/models.py:16
 msgid "Category title"
 msgstr "Название категории"
 
-#: artworks/models.py:18
+#: artworks/models.py:19
 msgid "Category slug"
 msgstr "Slug категории"
 
-#: artworks/models.py:22
+#: artworks/models.py:23 artworks/models.py:92
 msgid "Category"
 msgstr "Категория"
 
-#: artworks/models.py:23
+#: artworks/models.py:24
 msgid "Categories"
 msgstr "Категории"
 
-#: artworks/models.py:39
+#: artworks/models.py:40
 msgid "Genre title"
 msgstr "Жанр"
 
-#: artworks/models.py:42
+#: artworks/models.py:43
 msgid "Genre slug"
 msgstr "Slug жанра"
 
-#: artworks/models.py:46
+#: artworks/models.py:47
 msgid "Genre"
 msgstr "Жанр"
 
-#: artworks/models.py:47
+#: artworks/models.py:48 artworks/models.py:84
 msgid "Genres"
 msgstr "Жанры"
 
-#: artworks/models.py:67
+#: artworks/models.py:68
 msgid "Title"
 msgstr "Название"
 
-#: artworks/models.py:70
+#: artworks/models.py:71
 msgid "Year"
 msgstr "Год"
 
-#: artworks/models.py:74
-msgid "Artwork rating"
-msgstr "Рейтинг произведения"
-
-#: artworks/models.py:79
+#: artworks/models.py:81
 msgid "Description"
 msgstr "Описание"
 
-#: artworks/models.py:90
+#: artworks/models.py:100
 msgid "Artwork"
 msgstr "Произведение"
+
+#~ msgid "Artwork rating"
+#~ msgstr "Рейтинг произведения"

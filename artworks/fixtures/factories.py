@@ -28,7 +28,6 @@ class TitleFactory(factory.django.DjangoModelFactory):
 
     name = factory.Sequence(lambda n: 'Artwork #%s' % n)
     year = factory.Iterator((2000, 2001, 2010, 2020))
-    rating = factory.Iterator(range(0, 11))
     description = factory.Faker('text')
     category = factory.Iterator(Category.objects.all())
 

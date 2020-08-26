@@ -4,7 +4,7 @@ from rest_framework.response import Response
 from rest_framework import permissions, status, generics
 from rest_framework.exceptions import ValidationError, ParseError
 from django.core.mail import send_mail
-from django.utils.translation import ugettext_lazy as _
+from django.utils.translation import gettext_lazy as _
 import uuid
 from django.contrib.auth import get_user_model
 from django.shortcuts import get_object_or_404

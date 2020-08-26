@@ -1,6 +1,7 @@
 import textwrap
 from django.db import models
-from django.utils.translation import ugettext_lazy as _
+from django.db.models import Avg
+from django.utils.translation import gettext_lazy as _
 from slugify import slugify
 from django.core.validators import MaxValueValidator, MinValueValidator
 import datetime
@@ -70,12 +71,6 @@ class Title(models.Model):
         verbose_name=_('Year'),
         validators=[MinValueValidator(MIN_YEAR), max_value_current_year],
     )
-    rating = models.PositiveIntegerField(
-        verbose_name=_('Artwork rating'),
-        validators=(MaxValueValidator(10), max_value_current_year),
-        blank=True,
-        null=True,
-    )
     description = models.TextField(
         verbose_name=_('Description'), null=True, blank=True
     )
@@ -90,6 +85,10 @@ class Title(models.Model):
         blank=True,
         verbose_name=_('Category'),
     )
+
+    @property
+    def rating(self):
+        return self.reviews.aggregate(avg=Avg('score')).get('avg')
 
     class Meta:
         verbose_name = _('Artwork')
