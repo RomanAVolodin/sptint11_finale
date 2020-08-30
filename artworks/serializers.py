@@ -1,16 +1,26 @@
 from rest_framework import serializers
-from django.shortcuts import get_object_or_404
+from rest_framework.validators import UniqueValidator
 
 from .models import Category, Genre, Title
 
 
 class CategorySerializer(serializers.ModelSerializer):
+    slug = serializers.SlugField(
+        required=False,
+        validators=[UniqueValidator(queryset=Category.objects.all())],
+    )
+
     class Meta:
         model = Category
         fields = ('name', 'slug')
 
 
 class GenreSerializer(serializers.ModelSerializer):
+    slug = serializers.SlugField(
+        required=False,
+        validators=[UniqueValidator(queryset=Genre.objects.all())],
+    )
+
     class Meta:
         model = Genre
         fields = ('name', 'slug')

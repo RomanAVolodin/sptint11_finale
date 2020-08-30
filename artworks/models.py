@@ -30,7 +30,7 @@ class Category(models.Model):
         )
 
     def save(self, *args, **kwargs):
-        if self.slug is None:
+        if self.slug is None or self.slug == '':
             self.slug = slugify(self.name)
         super(Category, self).save(*args, **kwargs)
 
@@ -54,7 +54,7 @@ class Genre(models.Model):
         )
 
     def save(self, *args, **kwargs):
-        if self.slug is None:
+        if self.slug is None or self.slug == '':
             self.slug = slugify(self.name)
         super(Genre, self).save(*args, **kwargs)
 
