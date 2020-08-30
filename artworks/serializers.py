@@ -54,11 +54,3 @@ class TitleCreateUpdateSerializer(serializers.ModelSerializer):
             'category',
         )
         read_only_fields = ('rating',)
-
-    # def create(self, validated_data):
-    #     instance = Title.objects.create(**validated_data)
-    #     slug = validated_data.get('category')
-    #     if slug:
-    #         category = get_object_or_404(Category, slug=slug)
-    #         instance.category = category
-    #     return instance
